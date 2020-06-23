@@ -15,7 +15,7 @@ $("#currentDay").append(moment().format("dddd, MMMM Do"));
 // loop for adding each row to the schedule
 // note: /*html*/ is a funciton that allows a VSCode extension to color format the html in the loop as html instead of a string
 for (let i = 0; i < 9; i++) {
-  $("#scheduleSpace").append(/*html*/ `<form>
+  $("#scheduleSpace").append(/*html*/ `<form method="POST">
   <div class="input-group">
     <p class="timeList noBtm">${times[i].schedTime}</p>
   
@@ -30,6 +30,7 @@ for (let i = 0; i < 9; i++) {
       <button
         class="btn btn-outline-light noBtm bg-info"
         type="button"
+        id="${i}"
         aria-label="Add to schedule"
       >
         <svg
@@ -50,6 +51,7 @@ for (let i = 0; i < 9; i++) {
   </div>
   </form>`);
 
+  //   adds row coloring based on time
   if (moment().format("H") === times[i].timeID) {
     $("#schedualItem" + i).removeClass("bg-success");
     $("#schedualItem" + i).removeClass("bg-secondary");
@@ -64,3 +66,11 @@ for (let i = 0; i < 9; i++) {
     $("#schedualItem" + i).addClass("bg-secondary");
   }
 }
+
+$("button").click(function () {
+  var schedButton = this.id;
+  console.log(schedButton);
+  var textField = $("#schedualItem" + schedButton).val();
+  console.log(textField);
+  localStorage.setItem(schedButton, textField);
+});
