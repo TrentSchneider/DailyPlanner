@@ -69,3 +69,13 @@ textarea {
   font-size: 20px;
   transition: all 0.3s ease-in-out;
 }
+.timeList {
+  margin: 0;
+  padding-top: 5px;
+  border-top: solid;
+  border-bottom: solid;
+  border-width: 1px;
+  border-color: gray;
+  width: 90px;
+  text-align: right;
+}
