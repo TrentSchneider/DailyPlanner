@@ -79,3 +79,9 @@ textarea {
   width: 90px;
   text-align: right;
 }
+.bg-info {
+  border-left: none;
+}
+.noBtm {
+  border-bottom: none;
+}

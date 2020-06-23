@@ -1,34 +1,34 @@
-var times = [
-  "9 AM",
-  "10 AM",
-  "11 AM",
-  "12 AM",
-  "1 PM",
-  "2 PM",
-  "3 PM",
-  "4 PM",
-  "5 PM",
-];
+var times = {
+  0: { schedTime: "9 am", timeID: "9" },
+  1: { schedTime: "10 am", timeID: "10" },
+  2: { schedTime: "11 am", timeID: "11" },
+  3: { schedTime: "12 am", timeID: "12" },
+  4: { schedTime: "1 pm", timeID: "13" },
+  5: { schedTime: "2 pm", timeID: "14" },
+  6: { schedTime: "3 pm", timeID: "15" },
+  7: { schedTime: "4 pm", timeID: "16" },
+  8: { schedTime: "5 pm", timeID: "17" },
+};
 // added current date to top of page
 $("#currentDay").append(moment().format("dddd, MMMM Do"));
 
 // loop for adding each row to the schedule
 // note: /*html*/ is a funciton that allows a VSCode extension to color format the html in the loop as html instead of a string
-for (let i = 0; i < times.length; i++) {
+for (let i = 0; i < 9; i++) {
   $("#scheduleSpace").append(/*html*/ `<form>
   <div class="input-group">
-    <p class="timeList">${times[i]}</p>
+    <p class="timeList noBtm">${times[i].schedTime}</p>
   
     <input
-      id="schedualItem ${i}"
+      id="schedualItem${i}"
       type="text"
-      class="form-control form-control-lg"
-      name="schedualItem ${i}"
+      class="form-control form-control-lg noBtm border-light"
+      name="schedualItem${i}"
     />
   
     <div class="input-group-append">
       <button
-        class="btn btn-outline-info bg-info"
+        class="btn btn-outline-light noBtm bg-info"
         type="button"
         aria-label="Add to schedule"
       >
@@ -49,4 +49,18 @@ for (let i = 0; i < times.length; i++) {
     </div>
   </div>
   </form>`);
+
+  if (moment().format("H") === times[i].timeID) {
+    $("#schedualItem" + i).removeClass("bg-success");
+    $("#schedualItem" + i).removeClass("bg-secondary");
+    $("#schedualItem" + i).addClass("bg-danger");
+  } else if (moment().format("H") < times[i].timeID) {
+    $("#schedualItem" + i).removeClass("bg-secondary");
+    $("#schedualItem" + i).removeClass("bg-danger");
+    $("#schedualItem" + i).addClass("bg-success");
+  } else {
+    $("#schedualItem" + i).removeClass("bg-success");
+    $("#schedualItem" + i).removeClass("bg-danger");
+    $("#schedualItem" + i).addClass("bg-secondary");
+  }
 }
