@@ -9,7 +9,7 @@ var times = {
   7: { schedTime: "4 pm", timeID: "16" },
   8: { schedTime: "5 pm", timeID: "17" },
 };
-var textField = " ";
+var textField = "";
 
 // added current date to top of page
 $("#currentDay").append(moment().format("dddd, MMMM Do"));
@@ -19,7 +19,7 @@ $("#currentDay").append(moment().format("dddd, MMMM Do"));
 for (let i = 0; i < 9; i++) {
   // if/else statement to either fill the value of the input field to the current locally stored value or leave the field blank
   if (localStorage.getItem(i, textField) === null) {
-    textField = " ";
+    textField = "";
   } else {
     textField = localStorage.getItem(i, textField);
   }
@@ -66,7 +66,7 @@ for (let i = 0; i < 9; i++) {
     $("#schedualItem" + i).removeClass("bg-success");
     $("#schedualItem" + i).removeClass("bg-secondary");
     $("#schedualItem" + i).addClass("bg-danger");
-  } else if (moment().format("H") < times[i].timeID) {
+  } else if (parseInt(moment().format("H")) < parseInt(times[i].timeID)) {
     $("#schedualItem" + i).removeClass("bg-secondary");
     $("#schedualItem" + i).removeClass("bg-danger");
     $("#schedualItem" + i).addClass("bg-success");
@@ -83,4 +83,10 @@ $("button").click(function () {
   textField = $("#schedualItem" + schedButton).val();
   console.log(textField);
   localStorage.setItem(schedButton, textField);
+});
+$("#clear").click(function () {
+  localStorage.clear();
+  for (let i = 0; i < 9; i++) {
+    $("#schedualItem" + i).val("");
+  }
 });
