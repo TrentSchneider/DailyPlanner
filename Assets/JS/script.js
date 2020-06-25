@@ -1,31 +1,73 @@
 var times = [
-  { schedTime: "9 am", timeID: "9" },
-  { schedTime: "10 am", timeID: "10" },
-  { schedTime: "11 am", timeID: "11" },
-  { schedTime: "12 pm", timeID: "12" },
-  { schedTime: "1 pm", timeID: "13" },
-  { schedTime: "2 pm", timeID: "14" },
-  { schedTime: "3 pm", timeID: "15" },
-  { schedTime: "4 pm", timeID: "16" },
-  { schedTime: "5 pm", timeID: "17" },
-];
-var textField = "";
+    { schedTime: "9 am", timeID: "9" },
+    { schedTime: "10 am", timeID: "10" },
+    { schedTime: "11 am", timeID: "11" },
+    { schedTime: "12 pm", timeID: "12" },
+    { schedTime: "1 pm", timeID: "13" },
+    { schedTime: "2 pm", timeID: "14" },
+    { schedTime: "3 pm", timeID: "15" },
+    { schedTime: "4 pm", timeID: "16" },
+    { schedTime: "5 pm", timeID: "17" },
+  ],
+  storageArray = JSON.parse(localStorage.getItem("storeData")),
+  textField = "",
+  startDate = moment().format("dddd, MMMM Do YYYY"),
+  dispDate = startDate,
+  idDate = moment().format("DDDYYYY");
 
 // added current date to top of page
-$("#currentDay").append(moment().format("dddd, MMMM Do"));
+$("#currentDay").append(dispDate);
+
+$("#nextDay").on("click", function () {
+  dispDate = moment(dispDate, "dddd MMMM Do YYYY").add(1, "days");
+  var day = dispDate.format("dddd"),
+    month = dispDate.format("MMMM"),
+    dayNum = dispDate.format("Do"),
+    year = dispDate.format("YYYY");
+
+  idDate = dispDate.format("DDDYYYY");
+  $("#scheduleSpace").empty();
+  addRows();
+  $("#currentDay").empty();
+  $("#currentDay").append(day + ", " + month + " " + dayNum + " " + year);
+});
+$("#previousDay").on("click", function () {
+  dispDate = moment(dispDate, "dddd MMMM Do YYYY").subtract(1, "days");
+  var day = dispDate.format("dddd"),
+    month = dispDate.format("MMMM"),
+    dayNum = dispDate.format("Do"),
+    year = dispDate.format("YYYY");
+
+  idDate = dispDate.format("DDDYYYY");
+  $("#scheduleSpace").empty();
+  addRows();
+  $("#currentDay").empty();
+  $("#currentDay").append(day + ", " + month + " " + dayNum + " " + year);
+});
 
 // loop for adding each row to the schedule
 // note: /*html*/ is a funciton that allows a VSCode extension to color format the html in the loop as html instead of a string
-for (let i = 0; i < times.length; i++) {
-  // if/else statement to either fill the value of the input field to the current locally stored value or leave the field blank
-  if (localStorage.getItem(i, textField) === null) {
-    textField = "";
-  } else {
-    textField = localStorage.getItem(i, textField);
-  }
-  //adding the html for each row of the schedule
-  $("#scheduleSpace").append(/*html*/ `<form method="POST">
-  <div class="input-group spacer">
+function addRows() {
+  for (let i = 0; i < times.length; i++) {
+    // function to either fill the value of the input field to the current locally stored value or leave the field blank
+    function textFill() {
+      if (storageArray != null) {
+        for (let j = 0; j < storageArray.length; j++) {
+          if (
+            idDate == storageArray[j].timestamp &&
+            storageArray[j].position == i
+          ) {
+            return storageArray[j].log;
+          } else {
+            return "";
+          }
+        }
+      }
+    }
+
+    //adding the html for each row of the schedule
+    $("#scheduleSpace").append(/*html*/ `<form method="POST">
+  <div class="input-group">
     <p class="timeList noBtm">${times[i].schedTime}</p>
   
     <textarea
@@ -34,13 +76,13 @@ for (let i = 0; i < times.length; i++) {
       class="form-control form-control-md noBtm textForm"
       name="schedualItem${i}"
       rows=""
-    >${textField}</textarea>
+    >${textFill()}</textarea>
   
     <div class="input-group-append">
       <button
-        class="btn noBtm bgButton"
+        class="btn noBtm bgButton saveBtn"
         type="button"
-        id="${i}"
+        id="${i}";
         aria-label="Add to schedule"
       >
         <svg
@@ -61,28 +103,40 @@ for (let i = 0; i < times.length; i++) {
   </div>
   </form>`);
 
-  //   adds row coloring based on time
-  if (moment().format("H") === times[i].timeID) {
-    $("#schedualItem" + i).removeClass("bgFuture");
-    $("#schedualItem" + i).removeClass("bgDone");
-    $("#schedualItem" + i).addClass("bgNow");
-  } else if (parseInt(moment().format("H")) < parseInt(times[i].timeID)) {
-    $("#schedualItem" + i).removeClass("bgDone");
-    $("#schedualItem" + i).removeClass("bgNow");
-    $("#schedualItem" + i).addClass("bgFuture");
-  } else {
-    $("#schedualItem" + i).removeClass("bgFuture");
-    $("#schedualItem" + i).removeClass("bgNow");
-    $("#schedualItem" + i).addClass("bgDone");
+    //   adds row coloring based on time
+    if (moment().format("H") === times[i].timeID) {
+      $("#schedualItem" + i).removeClass("bgFuture");
+      $("#schedualItem" + i).removeClass("bgDone");
+      $("#schedualItem" + i).addClass("bgNow");
+    } else if (parseInt(moment().format("H")) < parseInt(times[i].timeID)) {
+      $("#schedualItem" + i).removeClass("bgDone");
+      $("#schedualItem" + i).removeClass("bgNow");
+      $("#schedualItem" + i).addClass("bgFuture");
+    } else {
+      $("#schedualItem" + i).removeClass("bgFuture");
+      $("#schedualItem" + i).removeClass("bgNow");
+      $("#schedualItem" + i).addClass("bgDone");
+    }
   }
 }
+addRows();
 // stores the input field value into local storage and then sets that as the current value of the input field
-$("button").click(function () {
-  var schedButton = this.id;
-  console.log(schedButton);
+$(".saveBtn").click(function () {
+  var schedButton = this.id,
+    storageArray = JSON.parse(localStorage.getItem("storeData"));
+  if (storageArray === null) {
+    storageArray = [];
+  }
   textField = $("#schedualItem" + schedButton).val();
-  console.log(textField);
-  localStorage.setItem(schedButton, textField);
+  storageArray.push({
+    timestamp: idDate,
+    position: schedButton,
+    log: textField,
+  });
+  var storeToLocal = JSON.stringify(storageArray);
+  console.log(storeToLocal);
+  localStorage.setItem("storeData", storeToLocal);
+  console.log(localStorage.getItem("storeData"));
 });
 $("#clear").click(function () {
   localStorage.clear();

@@ -68,9 +68,13 @@ body {
   padding-top: 20px;
   border-top: solid;
 }
-.spacer {
-  margin-bottom: 1px;
-}
+
 .form-control {
   border: none;
+  border-top: solid;
+  border-width: 1px;
+  border-color: gray;
+}
+.margDown {
+  margin-bottom: 10px;
 }
