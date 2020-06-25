@@ -2,7 +2,7 @@ var times = [
   { schedTime: "9 am", timeID: "9" },
   { schedTime: "10 am", timeID: "10" },
   { schedTime: "11 am", timeID: "11" },
-  { schedTime: "12 am", timeID: "12" },
+  { schedTime: "12 pm", timeID: "12" },
   { schedTime: "1 pm", timeID: "13" },
   { schedTime: "2 pm", timeID: "14" },
   { schedTime: "3 pm", timeID: "15" },
@@ -38,7 +38,7 @@ for (let i = 0; i < times.length; i++) {
   
     <div class="input-group-append">
       <button
-        class="btn noBtm bg-info"
+        class="btn noBtm bgButton"
         type="button"
         id="${i}"
         aria-label="Add to schedule"

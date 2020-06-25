@@ -46,6 +46,9 @@ body {
 .bgNow {
   background-color: rgba(56, 53, 220, 0.5);
 }
+.bgButton {
+  background-color: rgba(71, 71, 71, 0.5);
+}
 .noBtm {
   border-bottom: none;
 }
