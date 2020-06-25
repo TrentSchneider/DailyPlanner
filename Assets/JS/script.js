@@ -67,24 +67,24 @@ function addRows() {
 
     //adding the html for each row of the schedule
     $("#scheduleSpace").append(/*html*/ `<form method="POST">
-  <div class="input-group">
-    <p class="timeList noBtm">${times[i].schedTime}</p>
+    <div class="input-group">
+      <p class="timeList noBtm">${times[i].schedTime}</p>
   
-    <textarea
-      id="schedualItem${i}"
-      type="text"
-      class="form-control form-control-md noBtm textForm"
-      name="schedualItem${i}"
-      rows=""
-    >${textFill()}</textarea>
+      <textarea
+        id="schedualItem${i}"
+       type="text"
+       class="form-control form-control-md noBtm textForm"
+       name="schedualItem${i}"
+       rows=""
+      >${textFill()}</textarea>
   
-    <div class="input-group-append">
-      <button
-        class="btn noBtm bgButton saveBtn"
-        type="button"
-        id="${i}";
-        aria-label="Add to schedule"
-      >
+      <div class="input-group-append">
+        <button
+          class="btn noBtm bgButton saveBtn"
+          type="button"
+          id="${i}";
+         aria-label="Add to schedule"
+       >
         <svg
           class="bi bi-calendar-check-fill text-light"
           width="1em"
