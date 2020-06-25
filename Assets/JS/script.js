@@ -63,17 +63,17 @@ for (let i = 0; i < times.length; i++) {
 
   //   adds row coloring based on time
   if (moment().format("H") === times[i].timeID) {
-    $("#schedualItem" + i).removeClass("bg-success");
-    $("#schedualItem" + i).removeClass("bg-secondary");
-    $("#schedualItem" + i).addClass("bg-danger");
+    $("#schedualItem" + i).removeClass("bgFuture");
+    $("#schedualItem" + i).removeClass("bgDone");
+    $("#schedualItem" + i).addClass("bgNow");
   } else if (parseInt(moment().format("H")) < parseInt(times[i].timeID)) {
-    $("#schedualItem" + i).removeClass("bg-secondary");
-    $("#schedualItem" + i).removeClass("bg-danger");
-    $("#schedualItem" + i).addClass("bg-success");
+    $("#schedualItem" + i).removeClass("bgDone");
+    $("#schedualItem" + i).removeClass("bgNow");
+    $("#schedualItem" + i).addClass("bgFuture");
   } else {
-    $("#schedualItem" + i).removeClass("bg-success");
-    $("#schedualItem" + i).removeClass("bg-danger");
-    $("#schedualItem" + i).addClass("bg-secondary");
+    $("#schedualItem" + i).removeClass("bgFuture");
+    $("#schedualItem" + i).removeClass("bgNow");
+    $("#schedualItem" + i).addClass("bgDone");
   }
 }
 // stores the input field value into local storage and then sets that as the current value of the input field
