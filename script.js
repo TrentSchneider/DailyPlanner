@@ -1,14 +1,14 @@
-var times = {
-  0: { schedTime: "9 am", timeID: "9" },
-  1: { schedTime: "10 am", timeID: "10" },
-  2: { schedTime: "11 am", timeID: "11" },
-  3: { schedTime: "12 am", timeID: "12" },
-  4: { schedTime: "1 pm", timeID: "13" },
-  5: { schedTime: "2 pm", timeID: "14" },
-  6: { schedTime: "3 pm", timeID: "15" },
-  7: { schedTime: "4 pm", timeID: "16" },
-  8: { schedTime: "5 pm", timeID: "17" },
-};
+var times = [
+  { schedTime: "9 am", timeID: "9" },
+  { schedTime: "10 am", timeID: "10" },
+  { schedTime: "11 am", timeID: "11" },
+  { schedTime: "12 am", timeID: "12" },
+  { schedTime: "1 pm", timeID: "13" },
+  { schedTime: "2 pm", timeID: "14" },
+  { schedTime: "3 pm", timeID: "15" },
+  { schedTime: "4 pm", timeID: "16" },
+  { schedTime: "5 pm", timeID: "17" },
+];
 var textField = "";
 
 // added current date to top of page
@@ -16,7 +16,7 @@ $("#currentDay").append(moment().format("dddd, MMMM Do"));
 
 // loop for adding each row to the schedule
 // note: /*html*/ is a funciton that allows a VSCode extension to color format the html in the loop as html instead of a string
-for (let i = 0; i < 9; i++) {
+for (let i = 0; i < times.length; i++) {
   // if/else statement to either fill the value of the input field to the current locally stored value or leave the field blank
   if (localStorage.getItem(i, textField) === null) {
     textField = "";
