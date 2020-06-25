@@ -4,21 +4,22 @@ body {
   line-height: 1;
 }
 
-textarea {
+.textForm {
   background: transparent;
-  border: none;
+  border-right: none;
   resize: none;
   color: #000000;
-  border-left: 1px solid black;
   padding: 10px;
+  font-weight: bold;
 }
 
 .jumbotron {
   text-align: center;
   background-color: transparent;
   color: black;
-  border-radius: 0;
-  border-bottom: 10px solid black;
+  padding-bottom: 0;
+  margin: 0;
+  padding-top: 32px;
 }
 
 .description {
@@ -45,4 +46,18 @@ textarea {
   display: flex;
   justify-content: center;
   margin-top: 5px;
+}
+.background {
+  background-image: url(Images/Spiral_Notebook.jpg);
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.pageSpace {
+  padding-top: 35px;
+  border-top: solid;
+}
+.spacer {
+  margin-bottom: 2px;
 }

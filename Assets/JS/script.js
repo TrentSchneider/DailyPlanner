@@ -25,20 +25,20 @@ for (let i = 0; i < times.length; i++) {
   }
   //adding the html for each row of the schedule
   $("#scheduleSpace").append(/*html*/ `<form method="POST">
-  <div class="input-group">
+  <div class="input-group spacer">
     <p class="timeList noBtm">${times[i].schedTime}</p>
   
-    <input
+    <textarea
       id="schedualItem${i}"
       type="text"
-      class="form-control form-control-lg noBtm border-light"
+      class="form-control form-control-md noBtm textForm"
       name="schedualItem${i}"
-      value = "${textField}"
-    />
+      rows=""
+    >${textField}</textarea>
   
     <div class="input-group-append">
       <button
-        class="btn btn-outline-light noBtm bg-info"
+        class="btn noBtm bg-info"
         type="button"
         id="${i}"
         aria-label="Add to schedule"
