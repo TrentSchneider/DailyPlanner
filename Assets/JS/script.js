@@ -147,11 +147,38 @@ $(".saveBtn").click(function () {
     storageArray = [];
   }
   textField = $("#schedualItem" + schedButton).val();
-  storageArray.push({
-    timestamp: idDate,
-    position: schedButton,
-    log: textField,
-  });
+  if (storageArray.length > 0) {
+    for (let i = 0; i < storageArray.length; i++) {
+      if (
+        storageArray[i].timestamp == idDate &&
+        storageArray[i].position == schedButton
+      ) {
+        storageArray.splice(i, 1, {
+          timestamp: idDate,
+          position: schedButton,
+          log: textField,
+        });
+        break;
+      } else if (
+        storageArray[i].timestamp != idDate ||
+        storageArray[i].position != schedButton
+      ) {
+        storageArray.push({
+          timestamp: idDate,
+          position: schedButton,
+          log: textField,
+        });
+        break;
+      }
+    }
+  } else {
+    storageArray.push({
+      timestamp: idDate,
+      position: schedButton,
+      log: textField,
+    });
+  }
+
   var storeToLocal = JSON.stringify(storageArray);
   console.log(storeToLocal);
   localStorage.setItem("storeData", storeToLocal);
