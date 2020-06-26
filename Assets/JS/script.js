@@ -26,6 +26,7 @@ $("#nextDay").on("click", function () {
     year = dispDate.format("YYYY");
 
   idDate = dispDate.format("DDDYYYY");
+  console.log(idDate);
   $("#scheduleSpace").empty();
   addRows();
   $("#currentDay").empty();
@@ -39,10 +40,20 @@ $("#previousDay").on("click", function () {
     year = dispDate.format("YYYY");
 
   idDate = dispDate.format("DDDYYYY");
+  console.log(idDate);
   $("#scheduleSpace").empty();
   addRows();
   $("#currentDay").empty();
   $("#currentDay").append(day + ", " + month + " " + dayNum + " " + year);
+});
+$("#today").on("click", function () {
+  dispDate = moment().format("dddd, MMMM Do YYYY");
+
+  idDate = moment().format("DDDYYYY");
+  $("#scheduleSpace").empty();
+  addRows();
+  $("#currentDay").empty();
+  $("#currentDay").append(dispDate);
 });
 
 // loop for adding each row to the schedule
@@ -51,18 +62,29 @@ function addRows() {
   for (let i = 0; i < times.length; i++) {
     // function to either fill the value of the input field to the current locally stored value or leave the field blank
     function textFill() {
-      if (storageArray != null) {
-        for (let j = 0; j < storageArray.length; j++) {
-          if (
-            idDate == storageArray[j].timestamp &&
-            storageArray[j].position == i
-          ) {
-            return storageArray[j].log;
-          } else {
-            return "";
-          }
+      for (let s = 0; s < storageArray.length; s++) {
+        console.log(s);
+      }
+      // if (storageArray != null) {
+      for (let j = 0; j < storageArray.length; j++) {
+        console.log(storageArray[j].timestamp);
+        console.log(idDate);
+        console.log(storageArray[j].position);
+        console.log(i);
+        console.log(storageArray.length);
+        console.log(j);
+        if (
+          idDate == storageArray[j].timestamp &&
+          storageArray[j].position == i
+        ) {
+          return storageArray[j].log;
+        } else {
+          return "";
         }
       }
+      // } else {
+      //   return "";
+      // }
     }
 
     //adding the html for each row of the schedule
@@ -122,6 +144,7 @@ function addRows() {
 addRows();
 // stores the input field value into local storage and then sets that as the current value of the input field
 $(".saveBtn").click(function () {
+  console.log(idDate);
   var schedButton = this.id,
     storageArray = JSON.parse(localStorage.getItem("storeData"));
   if (storageArray === null) {
@@ -140,6 +163,7 @@ $(".saveBtn").click(function () {
 });
 $("#clear").click(function () {
   localStorage.clear();
+  storageArray = JSON.parse(localStorage.getItem("storeData"));
   for (let i = 0; i < 9; i++) {
     $("#schedualItem" + i).val("");
   }
