@@ -11,6 +11,7 @@ var times = [
   ],
   storageArray = JSON.parse(localStorage.getItem("storeData")),
   textField,
+  textData,
   startDate = moment().format("dddd, MMMM Do YYYY"),
   dispDate = startDate,
   idDate = moment().format("DDDYYYY");
@@ -58,10 +59,8 @@ $("#today").on("click", function () {
 // note: /*html*/ is a funciton that allows a VSCode extension to color format the html in the loop as html instead of a string
 function addRows() {
   for (let i = 0; i < times.length; i++) {
-    // function to either fill the value of the input field to the current locally stored value or leave the field blank
-    // function textFill() {
+    // loop to either fill the value of the input field to the current locally stored value or leave the field blank
     if (storageArray != null) {
-      // for (let j = 0; j < storageArray.length; j++) {
       var j = 0;
       do {
         console.log(storageArray[j].timestamp);
@@ -74,17 +73,15 @@ function addRows() {
           idDate == storageArray[j].timestamp &&
           storageArray[j].position == i
         ) {
-          textField = storageArray[j].log;
+          textData = storageArray[j].log;
         } else {
-          textField = "";
+          textData = "";
         }
         j++;
-      } while (textField == "" && j < storageArray.length);
-      // }
+      } while (textData == "" && j < storageArray.length);
     } else {
-      textField = "";
+      textData = "";
     }
-    // }
 
     //adding the html for each row of the schedule
     $("#scheduleSpace").append(/*html*/ `<form method="POST">
@@ -97,7 +94,7 @@ function addRows() {
        class="form-control form-control-md noBtm textForm"
        name="schedualItem${i}"
        rows=""
-      >${textField}</textarea>
+      >${textData}</textarea>
   
       <div class="input-group-append">
         <button
