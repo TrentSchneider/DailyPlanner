@@ -10,7 +10,7 @@ var times = [
     { schedTime: "5 pm", timeID: "17" },
   ],
   storageArray = JSON.parse(localStorage.getItem("storeData")),
-  textField = "",
+  textField,
   startDate = moment().format("dddd, MMMM Do YYYY"),
   dispDate = startDate,
   idDate = moment().format("DDDYYYY");
@@ -26,7 +26,6 @@ $("#nextDay").on("click", function () {
     year = dispDate.format("YYYY");
 
   idDate = dispDate.format("DDDYYYY");
-  console.log(idDate);
   $("#scheduleSpace").empty();
   addRows();
   $("#currentDay").empty();
@@ -40,7 +39,6 @@ $("#previousDay").on("click", function () {
     year = dispDate.format("YYYY");
 
   idDate = dispDate.format("DDDYYYY");
-  console.log(idDate);
   $("#scheduleSpace").empty();
   addRows();
   $("#currentDay").empty();
@@ -61,12 +59,11 @@ $("#today").on("click", function () {
 function addRows() {
   for (let i = 0; i < times.length; i++) {
     // function to either fill the value of the input field to the current locally stored value or leave the field blank
-    function textFill() {
-      for (let s = 0; s < storageArray.length; s++) {
-        console.log(s);
-      }
-      // if (storageArray != null) {
-      for (let j = 0; j < storageArray.length; j++) {
+    // function textFill() {
+    if (storageArray != null) {
+      // for (let j = 0; j < storageArray.length; j++) {
+      var j = 0;
+      do {
         console.log(storageArray[j].timestamp);
         console.log(idDate);
         console.log(storageArray[j].position);
@@ -77,15 +74,17 @@ function addRows() {
           idDate == storageArray[j].timestamp &&
           storageArray[j].position == i
         ) {
-          return storageArray[j].log;
+          textField = storageArray[j].log;
         } else {
-          return "";
+          textField = "";
         }
-      }
-      // } else {
-      //   return "";
+        j++;
+      } while (textField == "" && j < storageArray.length);
       // }
+    } else {
+      textField = "";
     }
+    // }
 
     //adding the html for each row of the schedule
     $("#scheduleSpace").append(/*html*/ `<form method="POST">
@@ -98,7 +97,7 @@ function addRows() {
        class="form-control form-control-md noBtm textForm"
        name="schedualItem${i}"
        rows=""
-      >${textFill()}</textarea>
+      >${textField}</textarea>
   
       <div class="input-group-append">
         <button
