@@ -93,15 +93,15 @@ function addRows() {
        type="text"
        class="form-control form-control-md noBtm textForm"
        name="schedualItem${i}"
-       rows=""
+       rows="2"
       >${textData}</textarea>
   
       <div class="input-group-append">
         <button
           class="btn noBtm bgButton saveBtn"
           type="button"
-          id="${i}";
-         aria-label="Add to schedule"
+          id="${i}"
+          aria-label="Add to schedule"
        >
         <svg
           class="bi bi-calendar-check-fill text-light"
@@ -139,7 +139,7 @@ function addRows() {
 }
 addRows();
 // stores the input field value into local storage and then sets that as the current value of the input field
-$(".saveBtn").click(function () {
+$("#scheduleSpace").on("click", ".saveBtn", function () {
   console.log(idDate);
   var schedButton = this.id,
     storageArray = JSON.parse(localStorage.getItem("storeData"));
@@ -178,11 +178,8 @@ $(".saveBtn").click(function () {
       log: textField,
     });
   }
-
   var storeToLocal = JSON.stringify(storageArray);
-  console.log(storeToLocal);
   localStorage.setItem("storeData", storeToLocal);
-  console.log(localStorage.getItem("storeData"));
 });
 $("#clear").click(function () {
   localStorage.clear();
