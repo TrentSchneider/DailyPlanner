@@ -14,7 +14,7 @@ var times = [
 	textData,
 	startDate = moment().format("dddd, MMMM Do YYYY"),
 	dispDate = startDate,
-	idDate = moment().format("DDDYYYY");
+	idDate = moment().format("YYYYDDD");
 
 // added current date to top of page
 $("#currentDay").append(dispDate);
@@ -27,7 +27,7 @@ $("#nextDay").on("click", function () {
 		dayNum = dispDate.format("Do"),
 		year = dispDate.format("YYYY");
 
-	idDate = dispDate.format("DDDYYYY");
+	idDate = dispDate.format("YYYYDDD");
 	$("#scheduleSpace").empty();
 	$(document).ready(addRows());
 	$("#currentDay").empty();
@@ -42,7 +42,7 @@ $("#previousDay").on("click", function () {
 		dayNum = dispDate.format("Do"),
 		year = dispDate.format("YYYY");
 
-	idDate = dispDate.format("DDDYYYY");
+	idDate = dispDate.format("YYYYDDD");
 	$("#scheduleSpace").empty();
 	$(document).ready(addRows());
 	$("#currentDay").empty();
@@ -53,7 +53,7 @@ $("#previousDay").on("click", function () {
 $("#today").on("click", function () {
 	dispDate = moment().format("dddd, MMMM Do YYYY");
 
-	idDate = moment().format("DDDYYYY");
+	idDate = moment().format("YYYYDDD");
 	$("#scheduleSpace").empty();
 	$(document).ready(addRows());
 	$("#currentDay").empty();
@@ -121,11 +121,18 @@ function addRows() {
   </form>`);
 
 		//   adds row coloring based on time
-		if (moment().format("H") === times[i].timeID) {
+		if (
+			moment().format("H") === times[i].timeID &&
+			moment().format("YYYYDDD") == idDate
+		) {
 			$("#schedualItem" + i).removeClass("bgFuture");
 			$("#schedualItem" + i).removeClass("bgDone");
 			$("#schedualItem" + i).addClass("bgNow");
-		} else if (parseInt(moment().format("H")) < parseInt(times[i].timeID)) {
+		} else if (
+			(parseInt(moment().format("H")) < parseInt(times[i].timeID) &&
+				moment().format("YYYYDDD") == idDate) ||
+			moment().format("YYYYDDD") < idDate
+		) {
 			$("#schedualItem" + i).removeClass("bgDone");
 			$("#schedualItem" + i).removeClass("bgNow");
 			$("#schedualItem" + i).addClass("bgFuture");
