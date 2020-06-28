@@ -70,6 +70,8 @@ body {
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: cover;
+	margin-top: 20px;
+	margin-bottom: 10px;
 }
 .pageSpace {
 	padding-top: 20px;
@@ -87,4 +89,7 @@ body {
 }
 .notebookPad {
 	padding-left: 105px;
+}
+.buttonMarg {
+	margin-bottom: 15px;
 }
