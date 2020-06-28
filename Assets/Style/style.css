@@ -1,80 +1,90 @@
 body {
-  font-family: "Lemonada", cursive;
-  font-size: 16px;
-  line-height: 1;
+	font-family: "Lemonada", cursive;
+	font-size: 16px;
+	line-height: 1;
 }
 
 .textForm {
-  background: transparent;
-  border-right: none;
-  resize: none;
-  color: #000000;
-  padding: 10px;
-  font-weight: bold;
+	background: transparent;
+	border-right: none;
+	resize: none;
+	color: #000000;
+	padding: 10px;
+	font-weight: bold;
 }
 
 .jumbotron {
-  text-align: center;
-  background-color: transparent;
-  color: black;
-  padding-bottom: 0;
-  margin: 0;
-  padding-top: 32px;
-  padding-top: 16px;
+	text-align: center;
+	background-color: transparent;
+	color: black;
+	padding-bottom: 0;
+	margin: 0;
+	padding-top: 32px;
+	padding-top: 16px;
 }
 
 .description {
-  white-space: pre-wrap;
+	white-space: pre-wrap;
 }
 
 .timeList {
-  margin: 0;
-  padding-top: 5px;
-  border-top: solid;
-  border-bottom: solid;
-  border-width: 1px;
-  border-color: gray;
-  width: 90px;
-  text-align: right;
+	margin: 0;
+	padding-top: 5px;
+	border-top: solid;
+	border-bottom: solid;
+	border-width: 1px;
+	border-color: gray;
+	width: 90px;
+	text-align: right;
 }
 .bgDone {
-  background-color: rgba(108, 117, 125, 0.5);
+	background-color: rgba(108, 117, 125, 0.5);
 }
 .bgFuture {
-  background-color: rgba(40, 167, 70, 0.5);
+	background-color: rgba(40, 167, 70, 0.5);
 }
 .bgNow {
-  background-color: rgba(56, 53, 220, 0.5);
+	background-color: rgba(56, 53, 220, 0.5);
 }
 .bgButton {
-  background-color: rgba(71, 71, 71, 0.5);
+	background-color: rgba(71, 71, 71, 0.5);
 }
 .noBtm {
-  border-bottom: none;
+	border-bottom: none;
 }
 .buttonAlign {
-  display: flex;
-  justify-content: center;
-  margin-top: 5px;
+	display: flex;
+	justify-content: center;
+	margin-top: 5px;
 }
 .background {
-  background-image: url(Images/Spiral_Notebook.jpg);
-  height: 100%;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+	background-image: url(Images/spiralNotebook.png);
+	height: 100%;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+.woodBackground {
+	background-image: url(Images/wood-background.jpg);
+	height: 100%;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
 }
 .pageSpace {
-  padding-top: 20px;
-  border-top: solid;
+	padding-top: 20px;
+	border-top: solid;
 }
 
 .form-control {
-  border: none;
-  border-top: solid;
-  border-width: 1px;
-  border-color: gray;
+	border: none;
+	border-top: solid;
+	border-width: 1px;
+	border-color: gray;
 }
 .margDown {
-  margin-bottom: 10px;
+	margin-bottom: 10px;
+}
+.notebookPad {
+	padding-left: 105px;
 }
