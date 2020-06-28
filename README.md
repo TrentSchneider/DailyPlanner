@@ -1,5 +1,7 @@
 # Daily Planner
 
+Note: There is currently a known issue that the page may need to be refreshed in order for the entries to display when switching days.
+
 ## Description
 This is a site demonstrating my abilities with JQuery and local storage. This site is a daily planner that can change dates. All entries in the planner can be saved and will still be there after the page is refreshed. Depending on the time of day, the planner will update the interface displaying what time of day has already passed, the current time of day, and future time of day.
 
