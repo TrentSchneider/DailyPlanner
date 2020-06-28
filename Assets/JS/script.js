@@ -19,6 +19,7 @@ var times = [
 // added current date to top of page
 $("#currentDay").append(dispDate);
 
+// changes the day to the next day
 $("#nextDay").on("click", function () {
 	dispDate = moment(dispDate, "dddd MMMM Do YYYY").add(1, "days");
 	var day = dispDate.format("dddd"),
@@ -32,6 +33,8 @@ $("#nextDay").on("click", function () {
 	$("#currentDay").empty();
 	$("#currentDay").append(day + ", " + month + " " + dayNum + " " + year);
 });
+
+// changes the day to the previous day
 $("#previousDay").on("click", function () {
 	dispDate = moment(dispDate, "dddd MMMM Do YYYY").subtract(1, "days");
 	var day = dispDate.format("dddd"),
@@ -45,6 +48,8 @@ $("#previousDay").on("click", function () {
 	$("#currentDay").empty();
 	$("#currentDay").append(day + ", " + month + " " + dayNum + " " + year);
 });
+
+// changes the day to the current day
 $("#today").on("click", function () {
 	dispDate = moment().format("dddd, MMMM Do YYYY");
 
@@ -63,12 +68,6 @@ function addRows() {
 		if (storageArray != null) {
 			var j = 0;
 			do {
-				console.log(storageArray[j].timestamp);
-				console.log(idDate);
-				console.log(storageArray[j].position);
-				console.log(i);
-				console.log(storageArray.length);
-				console.log(j);
 				if (
 					idDate == storageArray[j].timestamp &&
 					storageArray[j].position == i
@@ -138,9 +137,9 @@ function addRows() {
 	}
 }
 $(document).ready(addRows());
+
 // stores the input field value into local storage and then sets that as the current value of the input field
 $("#scheduleSpace").on("click", ".saveBtn", function () {
-	console.log(idDate);
 	var schedButton = this.id,
 		storageArray = JSON.parse(localStorage.getItem("storeData"));
 	if (storageArray === null) {
@@ -159,7 +158,6 @@ $("#scheduleSpace").on("click", ".saveBtn", function () {
 			}
 		}
 	}
-
 	storageArray.push({
 		timestamp: idDate,
 		position: schedButton,
@@ -181,6 +179,8 @@ $("#scheduleSpace").on("click", ".saveBtn", function () {
 	var storeToLocal = JSON.stringify(storageArray);
 	localStorage.setItem("storeData", storeToLocal);
 });
+
+// clears all entries
 $("#clear").click(function () {
 	localStorage.clear();
 	storageArray = JSON.parse(localStorage.getItem("storeData"));
