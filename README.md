@@ -1,6 +1,5 @@
 # Daily Planner
-https://trentschneider.github.io/DailyPlanner/
-  Note: There is currently a known issue that the page may need to be refreshed in order for the entries to display when switching days. After refreshing, all entries will show correctly on each day.
+https://trentschneider.github.io/DailyPlanner/  Note: There is currently a known issue that the page may need to be refreshed in order for the entries to display when switching days. After refreshing, all entries will show correctly on each day.
 
 ## Description
 
